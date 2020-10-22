@@ -3,6 +3,7 @@ from tkinter.ttk import *
 from ttkthemes import themed_tk as tk
 from tkinter.filedialog import askopenfilename as opf
 
+from keyword_check import keyword_check
 
 global Load_file_path 
 global keywords_file_path 
@@ -58,8 +59,15 @@ def make_gui():
     style.configure('TButton', font = ('calibri', 20, 'bold'), borderwidth = '4') 
     btn1 = Button(box, text="Load File", command=lambda: get_path(False),)
     btn1.grid(column=0, row=0, pady = 10)
+    btn2 = Button(box, text="Load Keyword File", command=lambda:get_path(True))
+    btn2.grid(column=0, row=1, pady = 10)
     btn3 = Button(box, text="Edit File", command=lambda: edit_file(Load_file_path))
     btn3.grid(column=0, row=2, pady = 10)
+    btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keywords_file_path))
+    btn4.grid(column=0, row=3, pady = 10)
+    btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(Load_file_path,keywords_file_path))
+    btn6.grid(column=0, row=, pady = 10)
+
 	
 	
     box.mainloop()
