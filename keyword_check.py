@@ -1,4 +1,3 @@
-from collections import defaultdict
 import re
 
 def keyword_check(ans,path_file1,path_file2):
@@ -10,39 +9,25 @@ def keyword_check(ans,path_file1,path_file2):
     path_file2: path of file containing required keywords.
     """
     file1=open(path_file1,"r")
-    file2=open(path_file2,"r")
-    include_words = defaultdict(lambda:0)
-    result = defaultdict(lambda:0) 
-      
+    file2=open(path_file2,"r")#opening files
+    include_words = set() #set of all keywords
     i = 0
-    lines_with_words=[]  
-    # create map of banned words
     for line in file2: 
-        # reading each word 
         res = re.findall(r'\w+',line)
-        n=len(res)
-        i=0      
-        while i<n:
-            s=res[i].lower()
-            include_words[s]=1
-            i+=1
-        
+        for i in res:
+            a = i.lower()
+            include_words.add(a)        
     for line in file1: 
-        # reading each word 
         for line1 in line.split('.'):
             if(line1=='\n'):
                 continue
-            res = re.findall(r'\w+',line1)
-            #print(res)
-            n=len(res)
-            i=0  
-            flag=0    
-            while i<n:
-                s=res[i].lower()
-                if(include_words[s]==1):
-                    flag=1
-                i+=1
-            if(flag==1):
-                lines_with_words.append(line1)
-                
-    ans.append(lines_with_words)
+            res = re.findall(r'\w+',line1) #all words in a line
+            for i in res:
+                a = i.lower()
+                if a in include_words:
+                    ans.append(line1)
+                    break # if any word is found in include words then no need to iterate furthur
+
+ans = []
+keyword_check(ans,"sports.txt","lap2.txt")
+print(ans)
