@@ -66,7 +66,7 @@ def make_gui():
     btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keywords_file_path))
     btn4.grid(column=0, row=3, pady = 10)
     btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(Load_file_path,keywords_file_path))
-    btn6.grid(column=0, row=, pady = 10)
+    btn6.grid(column=0, row=4, pady = 10)
 
 	
 	
