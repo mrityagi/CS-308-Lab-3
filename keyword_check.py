@@ -28,7 +28,3 @@ def keyword_check(ans,path_file1,path_file2):
                     ans.append(line1)
                     break # if any word is found in include words then no need to iterate furthur
     print(ans)
-
-ans = []
-keyword_check(ans,"Sports.txt","lap2.txt")
-print(ans)
