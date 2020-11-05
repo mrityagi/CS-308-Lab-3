@@ -20,9 +20,35 @@ def get_path(keyword):
 	else:
 		Load_file_path = opf() 
 
-		
-		
+def print_lines():
+
+	global Load_file_path
+	global keywords_file_path
 	
+	lines_box = Tk()
+	lines_box.title("Lines with Keywords")
+	
+	if Load_file_path == "" or keywords_file_path == "":
+		if Load_file_path == "":
+			Label(lines_box, text = "Please select file first!").pack()
+		if keywords_file_path =="":
+			Label(lines_box, text = "Please select Keyword file first!").pack()
+		exit = Button(lines_box, text="Exit", command=lambda: lines_box.destroy()).pack()
+		
+	else:
+		ans = []
+		keyword_check(ans,Load_file_path,keywords_file_path)
+		
+		text = ""
+		
+		for i in range(0,len(ans)):
+			text = text + str(ans[i]) + "\n"
+			
+		label=Label(lines_box,text=text).pack()
+
+		
+		exit = Button(lines_box, text="Exit", command=lambda: lines_box.destroy()).pack()	
+
 def edit_file(path):
 		window = Tk()
 		window.title("Editor")
@@ -78,7 +104,7 @@ def make_gui():
     btn3.grid(column=0, row=2, pady = 10)
     btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keywords_file_path))
     btn4.grid(column=0, row=3, pady = 10)
-    btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(ans,Load_file_path,keywords_file_path))
+    btn6 = Button(box, text="Keyword Check", command=lambda: print_lines())
     btn6.grid(column=0, row=4, pady = 10)
     btn7 = Button(box, text="Print Histogram", command=lambda: print_hist())
     btn7.grid(column=0, row=5, pady = 10)
