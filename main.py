@@ -57,21 +57,7 @@ def print_hist():
 	else:
 		ans=[]
 		histogram(Load_file_path)
-		'''
-		canvas = Canvas(hist_box, width = 1000, height = 600)
-		canvas.pack()
 		
-		img = ImageTk.PhotoImage(Image.open("./histogram.png"), master = canvas) 
-		canvas.create_image(0,0, anchor=NW, image=img)
-
-		text = "Most frequent used word is : "+str(ans[0][0])+"\n"+"Least frequent used word is : "+str(ans[0][1])+"\n"+"Number of lines used in file: "+str(ans[0][2])
-		
-		label=Label(hist_box,text=text).pack()
-		
-		exit = Button(hist_box, text="Exit", command=lambda: hist_box.destroy()).pack()
-		
-		mainloop()
-        '''
 ans=[]
 
 def make_gui():
