@@ -1,5 +1,3 @@
 khalsa team game
-<<<<<<< HEAD
 
-=======
->>>>>>> fa950eab52aeb034a7945960e3a578561913e357
+
