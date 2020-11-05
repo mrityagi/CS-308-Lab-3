@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter.ttk import * 
 from ttkthemes import themed_tk as tk
 from tkinter.filedialog import askopenfilename as opf
-
+from PIL import ImageTk,Image 
+from histogram import histogram
 from keyword_check import keyword_check
 
 global Load_file_path 
@@ -45,8 +46,34 @@ def edit_file(path):
 				file.close()
 				window.destroy()
 		
-
+def print_hist():
+    	
+	global Load_file_path	
 	
+	
+	if Load_file_path == "":
+		exit = Button(hist_box, text="Exit", command=lambda: hist_box.destroy()).pack()
+		
+	else:
+		ans=[]
+		histogram(Load_file_path)
+		'''
+		canvas = Canvas(hist_box, width = 1000, height = 600)
+		canvas.pack()
+		
+		img = ImageTk.PhotoImage(Image.open("./histogram.png"), master = canvas) 
+		canvas.create_image(0,0, anchor=NW, image=img)
+
+		text = "Most frequent used word is : "+str(ans[0][0])+"\n"+"Least frequent used word is : "+str(ans[0][1])+"\n"+"Number of lines used in file: "+str(ans[0][2])
+		
+		label=Label(hist_box,text=text).pack()
+		
+		exit = Button(hist_box, text="Exit", command=lambda: hist_box.destroy()).pack()
+		
+		mainloop()
+        '''
+ans=[]
+
 def make_gui():
     box = tk.ThemedTk() 
     box.get_themes()
@@ -65,10 +92,12 @@ def make_gui():
     btn3.grid(column=0, row=2, pady = 10)
     btn4 = Button(box, text="Edit Keyword", command=lambda: edit_file(keywords_file_path))
     btn4.grid(column=0, row=3, pady = 10)
-    btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(Load_file_path,keywords_file_path))
-    btn6.grid(column=0, row=, pady = 10)
-
-	
+    btn6 = Button(box, text="Keyword Check", command=lambda: keyword_check(ans,Load_file_path,keywords_file_path))
+    btn6.grid(column=0, row=4, pady = 10)
+    btn7 = Button(box, text="Print Histogram", command=lambda: print_hist())
+    btn7.grid(column=0, row=5, pady = 10)
+    btn8 = Button(box, text="EXIT", command=lambda: box.destroy())
+    btn8.grid(column=0, row=6, pady = 10)
 	
     box.mainloop()
 	
